@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Animation</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        .letter{
+            font-family: cursive;
+            color: grey;
+            display: inline-block;
+            transition: all 250ms ease-in-out;
+        }
+        .letter.active{
+            transform: scale(1.75) rotate(20deg);
+            color: indigo;
+        }
+    </style>
+</head>
+<body>
+    <h1>This is the Letter Animation.</h1>
+
+    <script>
+        const h1=document.querySelector("h1");
+        const letters=h1.innerText.split('');
+        var html="";
+        
+        letters.forEach(letter => {
+            let cls="";
+            if(letter!=" ")
+            cls="letter letter-js";
+            html=html+`<span class='${cls}'>${letter}</span>`;
+        });
+        h1.innerHTML=html;
+        let grab=document.querySelectorAll(".letter-js");
+        grab.forEach(node => {
+            node.addEventListener("mouseover",function(event){
+                this.classList.add("active");
+            })
+            node.addEventListener("mouseout",function(event){
+                this.classList.remove("active");
+            })
+        });
+    </script>
+</body>
+</html>
